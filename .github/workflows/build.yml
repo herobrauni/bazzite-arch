@@ -28,7 +28,7 @@ concurrency:
 jobs:
   push-ghcr:
     name: Make
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
       packages: write
@@ -36,30 +36,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [bazzite-arch] #, bazzite-arch-gnome]
+        base_name: [bazzite-arch, bazzite-arch-gnome]
         include:
           - is_latest_version: true
             is_stable_version: true
     steps:
-        - name: pre-df
-          run: |
-            echo "Free space:"
-            df -h
-    
+      - name: pre-df
+        run: |
+          df -h
+        
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
+
+      - name: post-df
+        run: |
+          df -h
+        
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
-      - name: post-df
-        run: |
-          echo "Free space:"
-          df -h
+
 
       - name: Matrix Variables
         run: |
