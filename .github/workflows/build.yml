@@ -52,7 +52,9 @@ jobs:
           swap-size-mb: 1024
           remove-dotnet: 'true'
           remove-android: 'true'
+          build-mount-path: "/var/tmp"
 
+          
       - name: post-df
         run: |
           df -h
