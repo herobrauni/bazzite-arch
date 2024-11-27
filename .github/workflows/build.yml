@@ -41,12 +41,25 @@ jobs:
           - is_latest_version: true
             is_stable_version: true
     steps:
-      - name: Maximize build space
-        uses: ublue-os/remove-unwanted-software@v7
-
+        - name: pre-df
+          run: |
+            echo "Free space:"
+            df -h
+    
+        - name: Maximize build space
+          uses: easimon/maximize-build-space@master
+          with:
+            root-reserve-mb: 512
+            swap-size-mb: 1024
+            remove-dotnet: 'true'
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
+
+      - name: post-df
+        run: |
+          echo "Free space:"
+          df -h
 
       - name: Matrix Variables
         run: |
