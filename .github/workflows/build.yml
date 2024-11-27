@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [bazzite-arch, bazzite-arch-gnome]
+        base_name: [bazzite-arch] #, bazzite-arch-gnome]
         include:
           - is_latest_version: true
             is_stable_version: true
