@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [bazzite-arch, bazzite-arch-gnome]
+        base_name: [bazzite-arch] #, bazzite-arch-gnome]
         include:
           - is_latest_version: true
             is_stable_version: true
@@ -47,6 +47,11 @@ jobs:
         
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          remove-android: 'true'
 
       - name: post-df
         run: |
