@@ -52,7 +52,7 @@ jobs:
           swap-size-mb: 1024
           remove-dotnet: 'true'
           remove-android: 'true'
-          build-mount-path: "~/.local/share/containers/"
+#          build-mount-path: "~/.local/share/containers/"
 
           
         
