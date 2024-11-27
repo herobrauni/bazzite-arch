@@ -55,14 +55,14 @@ jobs:
           build-mount-path: "~/.local/share/containers/"
 
           
-      - name: post-df
-        run: |
-          df -h
         
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
+      - name: post-df
+        run: |
+          df -h
 
 
       - name: Matrix Variables
